@@ -102,12 +102,13 @@ public class AppTest {
     void testPatchPerson() throws Exception {
 
         MockHttpServletResponse response = mockMvc
-                .perform(patch("/people/1"))
+                .perform(patch("/people/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"firstName\": \"Jackson\", \"lastName\": \"Bind\"}"))
                 .andReturn()
                 .getResponse();
 
         assertThat(response.getStatus()).isEqualTo(200);
-        assertThat(response.getContentType()).isEqualTo(MediaType.APPLICATION_JSON.toString());
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
