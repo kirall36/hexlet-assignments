@@ -113,14 +113,11 @@ public class AppTest {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Test
     void testDeletePerson() throws Exception {
-        mockMvc.perform(delete("/people/1"));
-
-        MockHttpServletResponse response = mockMvc
-                .perform(get("/people/1"))
+        MockHttpServletResponse response = mockMvc.perform(delete("/people/1"))
                 .andReturn()
                 .getResponse();
 
-        assertThat(response.getStatus()).isEqualTo(404);
+        assertThat(response.getStatus()).isEqualTo(200);
     }
 
 
