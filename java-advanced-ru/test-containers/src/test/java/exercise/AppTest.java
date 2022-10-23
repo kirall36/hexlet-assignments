@@ -40,13 +40,6 @@ public class AppTest {
             //.withInitScript("src/test/resources/init.sql");
             .withInitScript("init.sql");
 
-    @BeforeEach
-    void checkPostgres() {
-        if (!postgreContainer.isHealthy()) {
-            throw new RuntimeException("Postgres is not healthy!");
-        }
-    }
-
     @DynamicPropertySource
     public static void properties(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", postgreContainer::getJdbcUrl);
